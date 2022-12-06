@@ -13,14 +13,10 @@ Parameters:
     Type: String
 
 
-  PublicSubnet1:
+  appsubnets:
     Description: Please enter the IP range (CIDR notation) for the public subnet in the first Availability Zone
     Type: String
 
-
-  PublicSubnet2:
-    Description: Please enter the IP range (CIDR notation) for the public subnet in the second Availability Zone
-    Type: String
 
 
   ImageAmi:
@@ -44,7 +40,57 @@ Parameters:
     Description: Name of the application like Engine/USG
     Type: String    
 Resources:
+  SGPing:
+    Type: AWS::EC2::SecurityGroup
+    DependsOn: VPC
+    Properties:
+      GroupDescription: SG to test ping
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: icmp
+          FromPort: 8
+          ToPort: -1
+          CidrIp: 0.0.0.0/0
+
+
+########################## EKS Cluster ###################################
+
+  EKSCluster:
+    Type: AWS::EKS::Cluster
+    Properties:
+      Name: !Ref ClusterName
+      ResourcesVpcConfig:
+        SecurityGroupIds:
+          - !Ref ControlPlaneSecurityGroup
+        SubnetIds: 
+        - !Ref appsubnets
+
+      RoleArn: !GetAtt EksServiceRole.Arn
+      Version: !Ref ClusterVersion
+
+  EksServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${ClusterName}-service-role"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "eks.amazonaws.com" 
+            Action:
+              - "sts:AssumeRole"
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+        - arn:aws:iam::aws:policy/AmazonEKSServicePolicy
 ######################### Security Groups ####################
+
   ControlPlaneSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
