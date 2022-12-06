@@ -4,7 +4,7 @@ pwd
 echo "Finding VPCs"
 aws ec2 describe-vpcs  > "${WORKSPACE}/template/vpc.json"
 
-vpcid=$(jq -r '.Vpcs[].VpcId' "${WORKSPACE}/template/vpc.json")
+VPCId=$(jq -r '.Vpcs[].VpcId' "${WORKSPACE}/template/vpc.json")
 
 #echo $vpcid
 
