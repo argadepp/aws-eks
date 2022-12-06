@@ -3,10 +3,7 @@
         "ParameterKey": "EnvironmentName",
         "ParameterValue":"${environment}"
     },
-    {
-        "ParameterKey": "AWSRegion",
-        "ParameterValue":"${AWSRegion}"
-    },
+
     {
         "ParameterKey":"VPCId",
         "ParameterValue":"${VPCId}"
