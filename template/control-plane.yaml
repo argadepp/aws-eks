@@ -42,7 +42,7 @@ Parameters:
 Resources:
   SGPing:
     Type: AWS::EC2::SecurityGroup
-    DependsOn: VPC
+    DependsOn: VPCId
     Properties:
       GroupDescription: SG to test ping
       VpcId: !Ref VPC
@@ -96,7 +96,7 @@ Resources:
     Properties:
       GroupDescription: Security group for master plane of the cluster
       GroupName: !Sub "${ClusterName}-control-plane-security-group"
-      VpcId: !Ref VPC
+      VpcId: !Ref VPCId
       Tags:
         - Key: "Product"
           Value: !Ref Product
@@ -109,7 +109,7 @@ Resources:
     Properties:
       GroupDescription: Security group for all nodes in the cluster
       GroupName: !Sub "${ClusterName}-workers-security-group"
-      VpcId: !Ref VPC
+      VpcId: !Ref VPCId
       Tags:
         - Key: !Sub "kubernetes.io/cluster/${ClusterName}"
           Value: owned
