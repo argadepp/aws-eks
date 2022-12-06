@@ -66,8 +66,8 @@ Resources:
       ResourcesVpcConfig:
         SecurityGroupIds:
           - !Ref ControlPlaneSecurityGroup
-        SubnetIds: 
-        - !Ref appsubnets
+        SubnetIds: !Split [',', !Join [',' , [!Ref appsubnets]]] 
+        
 
       RoleArn: !GetAtt EksServiceRole.Arn
       Version: !Ref ClusterVersion
