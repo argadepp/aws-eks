@@ -19,9 +19,9 @@ echo $appsubnets
 parameterfilepath="file://${WORKSPACE}/template/parameters.json"
 
 echo "!!!!!!!!!!!!!!!!!!!!!!!Substitute the parameters!!!!!!!!!!!!!!!!"
-envsubst < "${WORKSPACE}/template/asg_parameters.json.tmpl" > "${WORKSPACE}/template/parameters.json"
+envsubst < "${WORKSPACE}/template/parameters.json.tmpl" > "${WORKSPACE}/template/parameters.json"
 templateUrl="file://${WORKSPACE}/template/control-plane.yaml"
-#cat "${WORKSPACE}/template/asg_parameters.json.tmpl"
+cat "${WORKSPACE}/template/parameters.json.tmpl"
 echo "!!!!!!!!!!!!!!!!Final Parameters!!!!!!!!!!!!!!!!"
 cat "${WORKSPACE}/template/parameters.json"
 
