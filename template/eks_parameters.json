@@ -1,0 +1,53 @@
+[
+    {
+        "ParameterKey": "EnvironmentName",
+        "ParameterValue":"${environment}"
+    },
+    {
+        "ParameterKey": "AWSRegion",
+        "ParameterValue":"${AWSRegion}"
+    },
+    {
+        "ParameterKey":"VPCId",
+        "ParameterValue":"${VPCId}"
+     },
+
+    {
+        "ParameterKey":"PublicSubnet1",
+        "ParameterValue":"${PublicSubnet1}"
+    },
+
+    {
+        "ParameterKey":"PublicSubnet2",
+        "ParameterValue":"${PublicSubnet2"
+
+    } ,
+
+    {
+        "ParameterKey":"ClusterName",
+        "ParameterValue":"${ClusterName}"
+    },
+
+    {
+        "ParameterKey":"ClusterVersion",
+        "ParameterValue":"${ClusterVersion}"
+    },
+
+    {
+        "ParameterKey":"Product",
+        "ParameterValue":"${Product}"
+    },
+    {
+        "ParameterKey":"ApplicationName",
+        "ParameterValue":"${ApplicationName}"
+    }
+    ,
+    {
+        "ParameterKey":"ProductOwnerEmail",
+        "ParameterValue":"${ProductOwnerEmail}"
+    },
+    {
+        "ParameterKey":"ImageAmi",
+        "ParameterValue":"${nodeAmiId}"
+
+ 
