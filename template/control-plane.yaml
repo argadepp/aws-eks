@@ -1,5 +1,6 @@
-Description:  This template is used to create EKS Cluster with Managed Nodes 
-
+---
+Description: Stack of EKS Control Plane
+AWSTemplateFormatVersion: '2010-09-09'
 Parameters:
   EnvironmentName:
     Description: An environment name that is prefixed to resource names
