@@ -20,12 +20,12 @@ echo $appsubnets
 parameterfilepath="file://${WORKSPACE}/template/parameters.json"
 
 echo "!!!!!!!!!!!!!!!!!!!!!!!Substitute the parameters!!!!!!!!!!!!!!!!"
-envsubst < "${parameterfilepath}.tmpl" > "${parameterfilepath}"
+envsubst < "${WORKSPACE}/template/eks_parameters.json.tmpl}" > "${WORKSPACE}/template/parameters.json}"
 templateUrl="file://${WORKSPACE}/template/control-plane.yaml"
 echo "Temp File"
 #cat "${WORKSPACE}/template/eks_parameters.json.tmpl"
 echo "!!!!!!!!!!!!!!!!Final Parameters!!!!!!!!!!!!!!!!"
-cat "${parameterfilepath}"
+cat "${WORKSPACE}/template/parameters.json}"
 
 echo "!!!!!!!!!!!!! ${action} of "eks-${environment}-${stackName}" stack is initiated !!!!!!!!!!!!!!!!!!!!!!!!"
 aws cloudformation "${action}"-stack \
