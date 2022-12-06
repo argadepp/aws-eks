@@ -35,11 +35,10 @@ pipeline {
         
         stage('NodeGroup Create') {
             steps {
-                environment {
-                    APIEndPoint="${APIEndPoint}"
-                }
+               
                sh 'chmod +x ${WORKSPACE}/template/*'
                withAWS(credentials: 'AWSCred' , region: 'ap-south-1') {
+                   env.APIEndPoint="${APIEndPoint}"    
                sh(script: "${WORKSPACE}/template/node.sh")
                }
             }
