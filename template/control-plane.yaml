@@ -42,7 +42,7 @@ Parameters:
 Resources:
   SGPing:
     Type: AWS::EC2::SecurityGroup
-    DependsOn: VPCId
+
     Properties:
       GroupDescription: SG to test ping
       VpcId: !Ref VPCId
