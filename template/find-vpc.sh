@@ -20,7 +20,7 @@ parameterfilepath="file://${WORKSPACE}/template/parameters.json"
 
 echo "!!!!!!!!!!!!!!!!!!!!!!!Substitute the parameters!!!!!!!!!!!!!!!!"
 envsubst < "${WORKSPACE}/template/asg_parameters.json.tmpl" > "${WORKSPACE}/template/parameters.json"
-templateUrl="file://${WORKSPACE}/template/controle-plane.yaml"
+templateUrl="file://${WORKSPACE}/template/control-plane.yaml"
 #cat "${WORKSPACE}/template/asg_parameters.json.tmpl"
 echo "!!!!!!!!!!!!!!!!Final Parameters!!!!!!!!!!!!!!!!"
 cat "${WORKSPACE}/template/parameters.json"
