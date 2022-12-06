@@ -26,7 +26,7 @@ parameterfilepath="file://${WORKSPACE}/template/nodeparameters.json"
 
 echo "!!!!!!!!!!!!!!!!!!!!!!!Substitute the parameters!!!!!!!!!!!!!!!!"
 envsubst < "${WORKSPACE}/template/node_parameters.json.tmpl" > "${WORKSPACE}/template/nodeparameters.json"
-templateUrl="file://${WORKSPACE}/template/controle-plane.yaml"
+templateUrl="file://${WORKSPACE}/template/nodeGrp.yaml"
 #cat "${WORKSPACE}/template/asg_parameters.json.tmpl"
 echo "!!!!!!!!!!!!!!!!Final Parameters!!!!!!!!!!!!!!!!"
 cat "${WORKSPACE}/template/nodeparameters.json"
