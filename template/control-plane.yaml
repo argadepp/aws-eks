@@ -45,7 +45,7 @@ Resources:
     DependsOn: VPCId
     Properties:
       GroupDescription: SG to test ping
-      VpcId: !Ref VPC
+      VpcId: !Ref VPCId
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22
