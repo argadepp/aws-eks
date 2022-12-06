@@ -43,7 +43,7 @@ Parameters:
   ApplicationName:
     Description: Name of the application like Engine/USG
     Type: String    
-
+Resources:
 ######################### Security Groups ####################
   ControlPlaneSecurityGroup:
     Type: AWS::EC2::SecurityGroup
