@@ -10,7 +10,9 @@ pipeline {
          booleanParam(name: 'Refresh', defaultValue: false , description: 'Refresh this Job')
          choice(name: 'action' ,  choices: ['create','update'] , description: 'action regarding thr stack create or update , choose as per the requirment' )
          choice(name: 'environment', choices: ['dev', 'qa', 'stage', 'stage-or', 'prod','toolchain'], description: '')
-         string(name: 'aws_region', defaultValue: 'ap-south-1' , description: 'AWS Region' )
+         string(name: 'AWSRegion', defaultValue: 'ap-south-1' , description: 'AWS Region' )
+         string(name: 'VPCId', defaultValue: 'vpc-062c05abf261884de')
+    
          string(name: 'ClusterName',defaultValue: 'eksDev')
          string(name: 'nodeAmiId',defaultValue:'ami-0f140243dedd3b53c', description: 'Pass the proper value of AMI id by default it is 1.20' )
          string(name: 'ClusterVersion',defaultValue: '1.20', description: 'Specify the cluster name')
