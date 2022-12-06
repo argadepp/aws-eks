@@ -212,7 +212,7 @@ Resources:
         DisableApiTermination: true
         ImageId: !Ref ImageAmi
         InstanceType: t2.medium
-        KeyName: eks-1
+        KeyName: helm_key
         SecurityGroupIds: 
           -  !Ref NodeSecurityGroup
         UserData:
