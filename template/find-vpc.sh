@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pwd
+
 echo "Finding VPCs"
 aws ec2 describe-vpcs  > "${WORKSPACE}/template/vpc.json"
 
