@@ -24,8 +24,9 @@ pipeline {
         stage('Infra-Creation') {
             steps {
                 
+               sh 'chmod +x ${WORKSPACE}/template/*'
                withAWS(credentials: 'AWSCred' , region: 'ap-south-1') {
-               sh(script: "${WORKSPACE}/template/findvpc.sh")
+               sh(script: "${WORKSPACE}/template/find-vpc.sh")
                }
             }
         }
