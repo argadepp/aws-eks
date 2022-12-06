@@ -12,7 +12,7 @@ pipeline {
          choice(name: 'environment', choices: ['dev', 'qa', 'stage', 'stage-or', 'prod','toolchain'], description: '')
          string(name: 'AWSRegion', defaultValue: 'ap-south-1' , description: 'AWS Region' )
          string(name: 'VPCId', defaultValue: 'vpc-062c05abf261884de')
-         string(name: 'appsubnets')
+         string(name: 'appsubnets',defaultValue: 'subnet-0642101628122b197,subnet-010c9e5041538922b,subnet-0e9b7bad3671f58a3')
          string(name: 'ClusterName',defaultValue: 'eksDev')
          string(name: 'nodeAmiId',defaultValue:'ami-0f140243dedd3b53c', description: 'Pass the proper value of AMI id by default it is 1.20' )
          string(name: 'ClusterVersion',defaultValue: '1.20', description: 'Specify the cluster name')
