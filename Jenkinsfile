@@ -23,12 +23,22 @@ pipeline {
     }  
     stages {
         
-        stage('Infra-Creation') {
+        stage('Controle_Plane_Create') {
             steps {
                 
                sh 'chmod +x ${WORKSPACE}/template/*'
                withAWS(credentials: 'AWSCred' , region: 'ap-south-1') {
                sh(script: "${WORKSPACE}/template/find-vpc.sh")
+               }
+            }
+        }
+        
+        stage('NodeGroup Create') {
+            steps {
+                
+               sh 'chmod +x ${WORKSPACE}/template/*'
+               withAWS(credentials: 'AWSCred' , region: 'ap-south-1') {
+               sh(script: "${WORKSPACE}/template/node.sh")
                }
             }
         }
