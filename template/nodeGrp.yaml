@@ -1,0 +1,83 @@
+---
+Description: Stack of EKS NodeGroup
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  EnvironmentName:
+    Description: An environment name that is prefixed to resource names
+    Type: String
+  ProductOwnerEmail:
+    Description: Email id of the product owner
+    Type: String
+  appsubnets:
+    Description: Please enter the IP range (CIDR notation) for the public subnet in the first Availability Zone
+    Type: String
+  ImageAmi:
+    Description: Pass the proper AMI ID
+    Type: String  
+
+  ClusterName:
+    Description: Name of the EKS Cluster
+    Type: String
+
+  SG: 
+    Description: SG
+    Type: String  
+    
+  Product:
+    Description: Product Name like Hotel/Car/Cart/Flight/Revenut/OCL
+    Type: String
+
+  ApplicationName:
+    Description: Name of the application like Engine/USG
+    Type: String   
+
+  APIEndPoint:
+    Description: APIEndPoint
+    Type: String 
+  CertData:
+    Description: CertData
+    Type: String
+
+  RoleArn:
+    Description: RoleArn
+    Type: String  
+        
+Resources:
+  MyLaunchTemplate: 
+    Type: AWS::EC2::LaunchTemplate
+    Properties:
+      LaunchTemplateName: MyLaunchTemplate
+      LaunchTemplateData:
+        DisableApiTermination: true
+        ImageId: !Ref ImageAmi
+        InstanceType: t2.medium
+        KeyName: helm_key
+        SecurityGroupIds: !Split [',', !Join [',' , [!Ref SG]]]
+          
+        UserData:
+          Fn::Base64:
+            !Sub |
+              #!/bin/bash
+              set -ex
+              B64_CLUSTER_CA=!Ref CertDate
+              API_SERVER_URL=!Ref APIEndPoint
+              /etc/eks/bootstrap.sh eksDev --b64-cluster-ca $B64_CLUSTER_CA --apiserver-endpoint $API_SERVER_URL
+
+  EKSNodegroupPub:
+    Type: 'AWS::EKS::Nodegroup'
+    Properties:
+      ClusterName: !Ref EKSCluster
+      NodeRole: !Ref RoleArn
+      LaunchTemplate: 
+        Id: !Ref  MyLaunchTemplate
+        #Name: !GetAtt MyLaunchTemplate.LaunchTemplateName
+        Version: !GetAtt MyLaunchTemplate.LatestVersionNumber
+            
+      ScalingConfig:
+        MinSize: 1
+        DesiredSize: 1
+        MaxSize: 2
+      Labels:
+        Name: eksNodeGroup
+      Subnets: !Split [',', !Join [',' , [!Ref appsubnets]]] 
+         
