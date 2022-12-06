@@ -1,18 +1,19 @@
 #!/bin/bash
 
+pwd
 echo "Finding VPCs"
-aws ec2 describe-vpcs  > vpc.json
+aws ec2 describe-vpcs  > "${WORKSPACE}/template/vpc.json"
 
-vpcid=$(jq -r '.Vpcs[].VpcId' vpc.json)
+vpcid=$(jq -r '.Vpcs[].VpcId' "${WORKSPACE}/template/vpc.json")
 
 #echo $vpcid
 
 echo "Finding Subnets"
 
-aws ec2 describe-subnets > subnets.json
+aws ec2 describe-subnets > "${WORKSPACE}/template/subnets.json"
 
-appsubnets=$(jq -r '.Subnets[].SubnetId' subnets.json | sed ':a;N;$!ba;s/\n/,/g')
-subnet_list=$(jq -r '.Subnets[].SubnetId' subnets.json)
+appsubnets=$(jq -r '.Subnets[].SubnetId' "${WORKSPACE}/template/subnets.json" | sed ':a;N;$!ba;s/\n/,/g')
+subnet_list=$(jq -r '.Subnets[].SubnetId' "${WORKSPACE}/template/subnets.json")
 
 echo $appsubnets
 
